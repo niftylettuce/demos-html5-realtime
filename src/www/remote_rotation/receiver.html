@@ -25,7 +25,9 @@
             });
             var el = $("#img");
             socket.on('coords', function(obj) {
+              console.log("coords!");
               if ( typeof obj !== 'object' ) {
+                console.log("Object!");
                 var dataObj = JSON.parse(obj);
                 console.log(dataObj);
                 if (dataObj.type === "orientation") {
