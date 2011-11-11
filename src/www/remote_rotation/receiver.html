@@ -1,0 +1,43 @@
+<!document html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, maximum-scale=1.0">
+        <title>Orientation - Receiver</title>
+        <style>
+          #img {
+            position: absolute;
+            left: 72px;
+            top: 72px;
+            width: 256px;
+            height: 256px;
+          }
+        </style>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/libs/jquery-1.6.2.min.js"><\/script>')</script>
+        <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+        <script type="text/javascript">
+          alert("Loading...");
+          $(document).ready(function() {
+            var socket = io.connect('http://localhost:3000');
+            socket.on('connect', function() {
+              alert("Connected");
+            });
+            var el = $("#img");
+            socket.on('coords', function( obj ){
+              if ( typeof obj !== 'object' ) {
+                var dataObj = JSON.parse(obj);
+                if (dataObj.demo.type === "orientation") {
+                  var rotate = 'rotate(' + dataObj.demo.gamma*-1 + 'deg)';
+                  var scale = 'scale(' + ((event.beta/180)*2 + 1) + ')';
+                  el.css("webkitTransform", rotate + ' ' + scale);
+                }
+              }
+            });
+          });
+        </script>
+    </head>
+    <body>
+      <img src="/icon.png" />
+    </body>
+</html>

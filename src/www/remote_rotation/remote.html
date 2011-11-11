@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0">
+    <title>Remote Rotation - Remote</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/libs/jquery-1.6.2.min.js"><\/script>')</script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        var socket = io.connect('http://172.29.6.45:3000');
+        console.log(socket);
+        var el = $("#status");
+        socket.on('connect', function() {
+          alert("Connected");
+          var update = function (ev) {
+            alert("changed");
+            var orientation = {"demo" : {
+              "type"  : "orientation",
+              "alpha" : ev.alpha,
+              "beta"  : ev.beta,
+              "gamma" : ev.gamma
+            }};
+            el.text("Alpha: " + ev.alpha + " Beta: " + ev.beta + " Gamma: " + ev.gamma);
+            socket.send(JSON.stringify(orientation));
+          };
+          window.addEventListener('deviceorientation', update, true);
+        });
+      });
+    </script>
+</head>
+<body>
+    <h1>Remote Rotation</h1>
+    <p>Rotate the device to control the image on the receiving screen</p>
+    <div id="status"><h1>LOADING...</h1></div>
+</body>
+</html>
