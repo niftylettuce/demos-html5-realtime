@@ -27,9 +27,9 @@
             socket.on('coords', function(obj) {
               if ( typeof obj !== 'object' ) {
                 var dataObj = JSON.parse(obj);
-                if (dataObj.demo.type === "orientation") {
-                  var rotate = 'rotate(' + dataObj.demo.gamma*-1 + 'deg)';
-                  var scale = 'scale(' + ((event.beta/180)*2 + 1) + ')';
+                if (dataObj.type === "orientation") {
+                  var rotate = 'rotate(' + dataObj.gamma*-1 + 'deg)';
+                  var scale = 'scale(' + ((dataObj.beta/180)*2 + 1) + ')';
                   el.css("webkitTransform", rotate + ' ' + scale);
                 }
               }
