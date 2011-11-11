@@ -15,12 +15,12 @@
         socket.on('connect', function() {
           alert("Connected");
           var update = function (ev) {
-            var orientation = {"demo" : {
+            var orientation = {
               "type"  : "orientation",
               "alpha" : ev.alpha,
               "beta"  : ev.beta,
               "gamma" : ev.gamma
-            }};
+            };
             el.text("Alpha: " + ev.alpha + " Beta: " + ev.beta + " Gamma: " + ev.gamma);
             socket.send(JSON.stringify(orientation));
           };
