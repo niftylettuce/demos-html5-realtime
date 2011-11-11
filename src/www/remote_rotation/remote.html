@@ -9,7 +9,7 @@
     <script type="text/javascript" src="/socket.io/socket.io.js"></script>
     <script type="text/javascript">
       $(document).ready(function() {
-        var socket = io.connect('http://172.29.6.45:3000');
+        var socket = io.connect('http://niftylettuce:2000');
         console.log(socket);
         var el = $("#status");
         socket.on('connect', function() {

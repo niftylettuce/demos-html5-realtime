@@ -6,7 +6,7 @@ var express = require('express')
 
 app.use(express.static(__dirname + '/www'));
 
-app.listen(3000);
+app.listen(2000);
 
 io.sockets.on('connection', function(socket) {
   console.log("Connected");
