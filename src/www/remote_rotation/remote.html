@@ -9,13 +9,12 @@
     <script type="text/javascript" src="/socket.io/socket.io.js"></script>
     <script type="text/javascript">
       $(document).ready(function() {
-        var socket = io.connect('http://niftylettuce.com:3030');
+        var socket = io.connect('http://niftylettuce.com');
         console.log(socket);
         var el = $("#status");
         socket.on('connect', function() {
           alert("Connected");
           var update = function (ev) {
-            alert("changed");
             var orientation = {"demo" : {
               "type"  : "orientation",
               "alpha" : ev.alpha,

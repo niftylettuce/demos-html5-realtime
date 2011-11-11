@@ -19,12 +19,12 @@
         <script type="text/javascript">
           alert("Loading...");
           $(document).ready(function() {
-            var socket = io.connect('http://niftylettuce.com:3030');
+            var socket = io.connect('http://niftylettuce.com');
             socket.on('connect', function() {
               alert("Connected");
             });
             var el = $("#img");
-            socket.on('coords', function( obj ){
+            socket.on('coords', function(obj) {
               if ( typeof obj !== 'object' ) {
                 var dataObj = JSON.parse(obj);
                 if (dataObj.demo.type === "orientation") {
